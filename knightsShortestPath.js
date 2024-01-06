@@ -7,6 +7,9 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
         console.log('Invalid inputs.');
         return null;
     }
+
+    // Create the root.
+    const root = new Node([originX, originY], null);
 }
 
 class Node {
