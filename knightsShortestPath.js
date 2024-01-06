@@ -13,6 +13,9 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
 
     // Create the root.
     const root = new Node([originX, originY], null);
+
+    // Initialize the queue for breadth first tree traversal.
+    const queue = [root];
 }
 
 class Node {
