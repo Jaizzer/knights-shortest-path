@@ -33,6 +33,11 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             // Only get the coordinates that are valid in the chessboard.
             return x >= 0 && x <= 7 && y >= 0 && y <= 7;
         });
+
+        for (let i = 0; i < nextCoordinates.length; i++) {
+            // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
+            queue[0][`child${i}`] = new Node(nextCoordinates[i], queue[0]);
+        }
     }
 }
 
