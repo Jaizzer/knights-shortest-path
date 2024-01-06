@@ -8,3 +8,10 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
         return null;
     }
 }
+
+class Node {
+    constructor([x, y], parent) {
+        this.value = [x, y];
+        this.parent = parent;
+    }
+}
