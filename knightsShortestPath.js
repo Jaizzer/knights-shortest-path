@@ -8,6 +8,9 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
         return null;
     }
 
+    // Initialize shortest paths array.
+    const shortestPaths = [];
+
     // Create the root.
     const root = new Node([originX, originY], null);
 }
