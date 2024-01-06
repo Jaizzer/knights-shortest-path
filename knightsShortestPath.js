@@ -22,5 +22,13 @@ class Node {
     constructor([x, y], parent) {
         this.value = [x, y];
         this.parent = parent;
+        this.child0 = null;
+        this.child1 = null;
+        this.child2 = null;
+        this.child3 = null;
+        this.child4 = null;
+        this.child5 = null;
+        this.child6 = null;
+        this.child7 = null;
     }
 }
