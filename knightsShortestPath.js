@@ -33,7 +33,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             }
             // Append path to the shortest path array.
             shortestPaths.push(path);
-        } else {
+        } else if (shortestPaths.length === 0) {
             // Get the possible coordinates the Knight can go base on its current location
             const [currentNodeX, currentNodeY] = parentQueue[0].value;
             const nextCoordinates = [
