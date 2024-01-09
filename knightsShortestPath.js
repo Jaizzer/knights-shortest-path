@@ -18,7 +18,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     const parentQueue = [root];
 
     // Initialize the children queue for breadth first tree traversal.
-    const childrenQueue = [];
+    let childrenQueue = [];
 
     while (parentQueue.length !== 0) {
         // If current parent node's coordinates matches the coordinates of the destination, append it to the shortestPath array.
@@ -36,7 +36,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
         } else {
             // Get the possible coordinates the Knight can go base on its current location
             const [currentNodeX, currentNodeY] = parentQueue[0].value;
-            let nextCoordinates = [
+            const nextCoordinates = [
                 [currentNodeX - 1, currentNodeY - 2],
                 [currentNodeX - 2, currentNodeY - 1],
                 [currentNodeX - 2, currentNodeY + 1],
@@ -53,6 +53,9 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             for (let i = 0; i < nextCoordinates.length; i++) {
                 // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
                 parentQueue[0][`child${i}`] = new Node(nextCoordinates[i], parentQueue[0]);
+
+                // Append child node to the children queue.
+                childrenQueue.push(parentQueue[0][`child${i}`]);
             }
         }
     }
