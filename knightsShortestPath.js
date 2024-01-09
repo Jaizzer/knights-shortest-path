@@ -17,6 +17,9 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     // Initialize the parentQueue for breadth first tree traversal.
     const parentQueue = [root];
 
+    // Initialize the children queue for breadth first tree traversal.
+    const childrenQueue = [];
+
     while (parentQueue.length !== 0) {
         // Get the possible coordinates the Knight can go base on its current location
         const [currentNodeX, currentNodeY] = parentQueue[0].value;
