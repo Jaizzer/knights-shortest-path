@@ -58,6 +58,8 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
                 childrenQueue.push(parentQueue[0][`child${i}`]);
             }
         }
+        // Remove the current parent from the queue.
+        parentQueue.shift();
     }
 }
 
