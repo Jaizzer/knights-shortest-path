@@ -21,6 +21,20 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     const childrenQueue = [];
 
     while (parentQueue.length !== 0) {
+        // If current parent node's coordinates matches the coordinates of the destination, append it to the shortestPath array.
+        const [currentParentNodeX, currentParentNodeY] = parentQueue[0].value;
+        if (currentParentNodeX === destinationX && currentParentNodeY === destinationY) {
+            // Trace the path
+            const path = [];
+            let currentNode = parentQueue[0];
+            while (currentNode !== null) {
+                path.unshift(currentNode.value);
+                currentNode = currentNode.parent;
+            }
+            // Append path to the shortest path array.
+            shortestPaths.push(path);
+        }
+
         // Get the possible coordinates the Knight can go base on its current location
         const [currentNodeX, currentNodeY] = parentQueue[0].value;
         let nextCoordinates = [
