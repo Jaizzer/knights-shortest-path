@@ -15,7 +15,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     const root = new Node([originX, originY], null);
 
     // Initialize the parentQueue for breadth first tree traversal.
-    const parentQueue = [root];
+    let parentQueue = [root];
 
     // Initialize the children queue for breadth first tree traversal.
     let childrenQueue = [];
@@ -60,6 +60,13 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
         }
         // Remove the current parent from the queue.
         parentQueue.shift();
+
+        // If no matches found in parent nodes, traverse down to their children nodes for possible matches.
+        if (parentQueue.length === 0 && shortestPaths.length === 0) {
+            // Transfer the children queue to the parent queue.
+            parentQueue = parentQueue.concat(childrenQueue);
+            childrenQueue = [];
+        }
     }
 }
 
