@@ -33,27 +33,27 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             }
             // Append path to the shortest path array.
             shortestPaths.push(path);
-        }
+        } else {
+            // Get the possible coordinates the Knight can go base on its current location
+            const [currentNodeX, currentNodeY] = parentQueue[0].value;
+            let nextCoordinates = [
+                [currentNodeX - 1, currentNodeY - 2],
+                [currentNodeX - 2, currentNodeY - 1],
+                [currentNodeX - 2, currentNodeY + 1],
+                [currentNodeX - 1, currentNodeY + 2],
+                [currentNodeX + 1, currentNodeY - 2],
+                [currentNodeX + 2, currentNodeY - 1],
+                [currentNodeX + 2, currentNodeY + 1],
+                [currentNodeX + 1, currentNodeY + 2],
+            ].filter(([x, y]) => {
+                // Only get the coordinates that are valid in the chessboard.
+                return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+            });
 
-        // Get the possible coordinates the Knight can go base on its current location
-        const [currentNodeX, currentNodeY] = parentQueue[0].value;
-        let nextCoordinates = [
-            [currentNodeX - 1, currentNodeY - 2],
-            [currentNodeX - 2, currentNodeY - 1],
-            [currentNodeX - 2, currentNodeY + 1],
-            [currentNodeX - 1, currentNodeY + 2],
-            [currentNodeX + 1, currentNodeY - 2],
-            [currentNodeX + 2, currentNodeY - 1],
-            [currentNodeX + 2, currentNodeY + 1],
-            [currentNodeX + 1, currentNodeY + 2],
-        ].filter(([x, y]) => {
-            // Only get the coordinates that are valid in the chessboard.
-            return x >= 0 && x <= 7 && y >= 0 && y <= 7;
-        });
-
-        for (let i = 0; i < nextCoordinates.length; i++) {
-            // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
-            parentQueue[0][`child${i}`] = new Node(nextCoordinates[i], parentQueue[0]);
+            for (let i = 0; i < nextCoordinates.length; i++) {
+                // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
+                parentQueue[0][`child${i}`] = new Node(nextCoordinates[i], parentQueue[0]);
+            }
         }
     }
 }
