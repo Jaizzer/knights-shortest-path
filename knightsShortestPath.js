@@ -14,12 +14,12 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     // Create the root.
     const root = new Node([originX, originY], null);
 
-    // Initialize the queue for breadth first tree traversal.
-    const queue = [root];
+    // Initialize the parentQueue for breadth first tree traversal.
+    const parentQueue = [root];
 
-    while (queue.length !== 0) {
+    while (parentQueue.length !== 0) {
         // Get the possible coordinates the Knight can go base on its current location
-        const [currentNodeX, currentNodeY] = queue[0].value;
+        const [currentNodeX, currentNodeY] = parentQueue[0].value;
         let nextCoordinates = [
             [currentNodeX - 1, currentNodeY - 2],
             [currentNodeX - 2, currentNodeY - 1],
@@ -36,7 +36,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
 
         for (let i = 0; i < nextCoordinates.length; i++) {
             // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
-            queue[0][`child${i}`] = new Node(nextCoordinates[i], queue[0]);
+            parentQueue[0][`child${i}`] = new Node(nextCoordinates[i], parentQueue[0]);
         }
     }
 }
@@ -55,3 +55,7 @@ class Node {
         this.child7 = null;
     }
 }
+
+// knightMoves([0, 0], [3, 3]);
+knightMoves([3, 3], [0, 0]);
+// knightMoves([0, 0], [7, 7]);
