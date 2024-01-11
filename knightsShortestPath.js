@@ -21,9 +21,10 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     let childrenQueue = [];
 
     while (parentQueue.length !== 0) {
-        // If current parent node's coordinates matches the coordinates of the destination, append it to the shortestPath array.
         const [currentParentNodeX, currentParentNodeY] = parentQueue[0].value;
         if (currentParentNodeX === destinationX && currentParentNodeY === destinationY) {
+            // If current parent node's coordinates matches the coordinates of the destination, append it to the shortestPath array
+
             // Trace the path
             const path = [];
             let currentNode = parentQueue[0];
@@ -31,10 +32,12 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
                 path.unshift(currentNode.value);
                 currentNode = currentNode.parent;
             }
-            // Append path to the shortest path array.
+            // Append path to the shortest path array
             shortestPaths.push(path);
         } else if (shortestPaths.length === 0) {
-            // Get the possible coordinates the Knight can go base on its current location
+            // If current parent node's coordinates do not match the coordinates of the destination and there is still no path found, calculate the next valid coordinates
+
+            // Get the valid coordinates the Knight can go base on its current location (current parent node's coordinates)
             const [currentNodeX, currentNodeY] = parentQueue[0].value;
             const nextCoordinates = [
                 [currentNodeX - 1, currentNodeY - 2],
@@ -51,19 +54,20 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             });
 
             for (let i = 0; i < nextCoordinates.length; i++) {
-                // Populate the current node (current coordinate location) with children nodes (next possible coordinate locations).
+                // Populate the current parent node with their children nodes containing the next possible coordinates base on the coordiantes of the parent node.
                 parentQueue[0][`child${i}`] = new Node(nextCoordinates[i], parentQueue[0]);
 
                 // Append child node to the children queue.
                 childrenQueue.push(parentQueue[0][`child${i}`]);
             }
         }
-        // Remove the current parent from the queue.
+        // Remove the current parent from the parent queue.
         parentQueue.shift();
 
-        // If no matches found in parent nodes, traverse down to their children nodes for possible matches.
         if (parentQueue.length === 0 && shortestPaths.length === 0) {
-            // Transfer the children queue to the parent queue.
+            // If none of the parent nodes in parentQueue matched the coordinates of the destination, traverse down to their children nodes for possible matches.
+
+            // Set the children nodes in the childrenQueue to be the new parent nodes by moving them to the parent queue.
             parentQueue = parentQueue.concat(childrenQueue);
             childrenQueue = [];
         }
