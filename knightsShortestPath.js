@@ -72,6 +72,11 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
             childrenQueue = [];
         }
     }
+    // Ouput result to the user.
+    console.log(`You made it in ${shortestPaths[0].length} moves!  Here's your path:`);
+    shortestPaths[0].forEach((coordinate) => {
+        console.log(JSON.stringify(coordinate));
+    });
 }
 
 class Node {
