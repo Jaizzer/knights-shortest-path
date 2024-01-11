@@ -15,6 +15,7 @@
             "classes": true,
             "variables": true,
             "allowNamedExports": false
-        }]
+        }],
+        "no-console": ["allow"]
     }
 }
