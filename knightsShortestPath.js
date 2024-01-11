@@ -20,7 +20,7 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
     // Initialize the children queue for breadth first tree traversal.
     let childrenQueue = [];
 
-    while (parentQueue.length !== 0) {
+    while (shortestPaths.length === 0) {
         const [currentParentNodeX, currentParentNodeY] = parentQueue[0].value;
         if (currentParentNodeX === destinationX && currentParentNodeY === destinationY) {
             // If current parent node's coordinates matches the coordinates of the destination, append it to the shortestPath array
@@ -91,4 +91,4 @@ class Node {
 
 // knightMoves([0, 0], [3, 3]);
 knightMoves([3, 3], [0, 0]);
-// knightMoves([0, 0], [7, 7]);
+knightMoves([0, 0], [7, 7]);
