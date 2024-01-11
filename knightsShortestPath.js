@@ -46,8 +46,8 @@ function knightMoves([originX, originY], [destinationX, destinationY]) {
                 [currentNodeX + 2, currentNodeY + 1],
                 [currentNodeX + 1, currentNodeY + 2],
             ].filter(([x, y]) => {
-                // Only get the coordinates that are valid in the chessboard.
-                return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+                // Only get the coordinates that are valid in the chessboard (not out of bounds and not equal to the origin)
+                return x >= 0 && x <= 7 && y >= 0 && y <= 7 && x !== originX && x !== originY;
             });
 
             for (let i = 0; i < nextCoordinates.length; i++) {
